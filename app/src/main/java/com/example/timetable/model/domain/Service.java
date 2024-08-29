@@ -6,6 +6,7 @@ import com.example.timetable.model.data.TrainCompany;
 import com.example.timetable.model.data.TrainLine;
 import com.example.timetable.model.database.TimeTableDao;
 import com.example.timetable.model.database.TimeTableDatabase;
+import com.example.timetable.utils.DateUtils;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ public class Service {
   }
 
   public int getDepartureStationId(boolean isInBound, int trainLineId) {
-    int departureStationId = 0;
+    int departureStationId;
     if (isInBound) {
       departureStationId = getStationById(getTrainLineById(trainLineId).getOutBoundTerminalStationId()).getId();
     } else {
@@ -30,7 +31,7 @@ public class Service {
   }
 
   public int getArrivalStationId(boolean isInBound, int trainLineId) {
-    int arrivalStationId = 0;
+    int arrivalStationId;
     if (isInBound) {
       arrivalStationId = getStationById(getTrainLineById(trainLineId).getInBoundTerminalStationId()).getId();
     } else {
@@ -58,7 +59,13 @@ public class Service {
   }
 
   public TimeTableDetail getNextTimeTableDetail(LocalDateTime departureDateTime, boolean isInBound, int trainLineId) {
-    TimeTable nextTimeTable = getNextTimeTable(isInBound, trainLineId, departureDateTime);
+    boolean isTodayWeekday = DateUtils.isWeekday(departureDateTime);
+    TimeTable nextTimeTable = getNextTimeTable(isInBound, isTodayWeekday, trainLineId, departureDateTime);
+    if (nextTimeTable == null) {
+//      次の日が休日がどうか判断
+      boolean isNextDayWeekday = DateUtils.isWeekday(departureDateTime.plusDays(1));
+      nextTimeTable = getFirstTrainTimeTable(isInBound, isNextDayWeekday, trainLineId);
+    }
     return new TimeTableDetail(nextTimeTable);
   }
 
@@ -115,8 +122,12 @@ public class Service {
   }
 
 //  Query(extra)
-  public TimeTable getNextTimeTable(boolean isInBound, int trainLineId, LocalDateTime departureDateTime) {
-    return dao.getNextTimeTable(isInBound, trainLineId, departureDateTime);
+  public TimeTable getNextTimeTable(boolean isInBound, boolean isWeekday, int trainLineId, LocalDateTime departureDateTime) {
+    return dao.getNextTimeTable(isInBound, isWeekday, trainLineId, departureDateTime);
+  }
+
+  public TimeTable getFirstTrainTimeTable(boolean isInBound, boolean isWeekday, int trainLineId) {
+    return dao.getFirstTrainTimeTable(isInBound, isWeekday, trainLineId);
   }
 
 //  Update

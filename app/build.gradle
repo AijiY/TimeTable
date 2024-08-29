@@ -43,4 +43,7 @@ dependencies {
 
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
+
+//    JollyDay（祝日用）
+    implementation 'de.jollyday:jollyday:0.5.10'
 }

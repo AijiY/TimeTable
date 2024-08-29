@@ -16,17 +16,25 @@ public class TimeTable {
   @ColumnInfo(name = "is_in_bound")
   private boolean isInBound;
 
+  @ColumnInfo(name = "is_weekday")
+  private boolean isWeekday;
+
   @ColumnInfo(name = "departure_time")
   private LocalDateTime departureTime;
 
   @ColumnInfo(name = "arrival_time")
   private LocalDateTime arrivalTime;
 
-  public TimeTable(int trainLineId, boolean isInBound, LocalDateTime departureTime, LocalDateTime arrivalTime) {
+  @ColumnInfo(name = "train_type")
+  private String trainType;
+
+  public TimeTable(int trainLineId, boolean isInBound, boolean isWeekday, LocalDateTime departureTime, LocalDateTime arrivalTime, String trainType) {
     this.trainLineId = trainLineId;
     this.isInBound = isInBound;
+    this.isWeekday = isWeekday;
     this.departureTime = departureTime;
     this.arrivalTime = arrivalTime;
+    this.trainType = trainType;
   }
 
   public int getId() {
@@ -67,5 +75,21 @@ public class TimeTable {
 
   public void setArrivalTime(LocalDateTime arrivalTime) {
     this.arrivalTime = arrivalTime;
+  }
+
+  public String getTrainType() {
+    return trainType;
+  }
+
+  public void setTrainType(String trainType) {
+    this.trainType = trainType;
+  }
+
+  public boolean isWeekday() {
+    return isWeekday;
+  }
+
+  public void setWeekday(boolean weekday) {
+    isWeekday = weekday;
   }
 }
