@@ -14,24 +14,22 @@ public final class TimeTableDetail {
   private String departureStationName;
   private String arrivalStationName;
 
-  private TimeTableDatabase db;
-  private TimeTableDao dao;
+  private Service service;
 
   public TimeTableDetail(TimeTable timeTable) {
     this.timeTable = timeTable;
-    db = TimeTableDatabase.getDatabase(null);
-    dao = db.timeTableDao();
+    service = new Service();
 
-    TrainLine trainLine = dao.getTrainLineById(timeTable.getTrainLineId());
+    TrainLine trainLine = service.getTrainLineById(timeTable.getTrainLineId());
 
-    trainCompanyNickname = dao.getTrainCompanyById(trainLine.getCompanyId()).getNickname();
+    trainCompanyNickname = service.getTrainCompanyById(trainLine.getCompanyId()).getNickname();
     trainLineName = trainLine.getName();
 
-    departureStationId = Service.getDepartureStationId(timeTable.isInBound(), timeTable.getTrainLineId(), dao);
-    arrivalStationId = Service.getArrivalStationId(timeTable.isInBound(), timeTable.getTrainLineId(), dao);
+    departureStationId = service.getDepartureStationId(timeTable.isInBound(), timeTable.getTrainLineId());
+    arrivalStationId = service.getArrivalStationId(timeTable.isInBound(), timeTable.getTrainLineId());
 
-    departureStationName = dao.getStationById(departureStationId).getName();
-    arrivalStationName = dao.getStationById(arrivalStationId).getName();
+    departureStationName = service.getStationById(departureStationId).getName();
+    arrivalStationName = service.getStationById(arrivalStationId).getName();
 
   }
 

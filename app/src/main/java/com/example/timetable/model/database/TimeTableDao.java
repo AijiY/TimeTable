@@ -54,9 +54,13 @@ public interface TimeTableDao {
   TimeTable getTimeTableById(int id);
 
 //  Query(extra)
-//  time_tablesからin_boundとtrain_line_idを指定して、departureDateTimeの直後のtime_tableを取得
-  @Query("SELECT * FROM time_tables WHERE is_in_bound = :isInBound AND train_line_id = :trainLineId AND departure_time > :departureDateTime ORDER BY departure_time LIMIT 1")
-  TimeTable getNextTimeTable(boolean isInBound, int trainLineId, LocalDateTime departureDateTime);
+//  time_tablesからin_boundとis_weekdayとtrain_line_idを指定して、departureDateTimeの直後のtime_tableを取得
+  @Query("SELECT * FROM time_tables WHERE is_in_bound = :isInBound AND is_weekday = :isWeekday AND train_line_id = :trainLineId AND departure_time > :departureDateTime ORDER BY departure_time LIMIT 1")
+  TimeTable getNextTimeTable(boolean isInBound, boolean isWeekday, int trainLineId, LocalDateTime departureDateTime);
+
+//  time_tablesからin_boundとis_weekdayとtrain_line_idを指定して、始発を取得
+  @Query("SELECT * FROM time_tables WHERE is_in_bound = :isInBound AND is_weekday = :isWeekday AND train_line_id = :trainLineId ORDER BY departure_time LIMIT 1")
+  TimeTable getFirstTrainTimeTable(boolean isInBound, boolean isWeekday, int trainLineId);
 
 //  Update
   @Update
