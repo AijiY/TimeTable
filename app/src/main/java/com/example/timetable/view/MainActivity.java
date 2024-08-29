@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.TypedValue;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -46,159 +48,80 @@ public class MainActivity extends AppCompatActivity {
     executorService.execute(() -> {
       service = new Service(this);
 
-//      会社表示
-      List<TrainCompany> trainCompanies = service.getTrainCompanies();
-
-      for (TrainCompany trainCompany : trainCompanies) {
-        System.out.println(trainCompany.getName() + trainCompany.getId());
-      }
-
-  //    TrainCompanyの名前をTextViewとして追加
-      for (TrainCompany trainCompany : trainCompanies) {
-        // TextViewを作成
-        TextView textView = new TextView(this);
-        textView.setText(trainCompany.getName());
-
-        // TextViewのレイアウトパラメータを設定
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        textView.setLayoutParams(params);
-
-        // TextViewのスタイルを設定
-        textView.setTextColor(Color.BLACK);
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
-
-        // TextViewをLinearLayoutに追加
-        layout.addView(textView);
-
-      }
-
-//      駅表示
       List<Station> stations = service.getStations();
 
-      for (Station station : stations) {
-        System.out.println(station.getName() + station.getId());
-      }
 
-  //    Stationの名前をTextViewとして追加
-      for (Station station : stations) {
-        // TextViewを作成
-        TextView textView = new TextView(this);
-        textView.setText(station.getName());
+//      new Handler(Looper.getMainLooper()).post(() -> {
+//        for (Station station : stations) {
+//          TextView textView = new TextView(this);
+//          textView.setText(station.getName());
+//          LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(
+//              LinearLayout.LayoutParams.MATCH_PARENT,
+//              LinearLayout.LayoutParams.WRAP_CONTENT
+//          );
+//          textView.setLayoutParams(params1);
+//          textView.setTextColor(Color.BLACK);
+//          textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
+//          layout.addView(textView);
+//        }
+//      });
 
-        // TextViewのレイアウトパラメータを設定
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        textView.setLayoutParams(params);
-
-        // TextViewのスタイルを設定
-        textView.setTextColor(Color.BLACK);
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
-
-        // TextViewをLinearLayoutに追加
-        layout.addView(textView);
-
-      }
-
-//      路線表示
-      List<TrainLine> trainLines = service.getTrainLines();
-
-      for (TrainLine trainLine : trainLines) {
-        System.out.println(trainLine.getName() + trainLine.getId());
-      }
-
-  //    TrainLineの名前をTextViewとして追加
-      for (TrainLine trainLine : trainLines) {
-        // TextViewを作成
-        TextView textView = new TextView(this);
-        textView.setText(trainLine.getName());
-
-        // TextViewのレイアウトパラメータを設定
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        textView.setLayoutParams(params);
-
-        // TextViewのスタイルを設定
-        textView.setTextColor(Color.BLACK);
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
-
-        // TextViewをLinearLayoutに追加
-        layout.addView(textView);
-
-      }
-
-//      時刻表
       List<TimeTable> timeTables = service.getTimeTables();
-      for (TimeTable timeTable : timeTables) {
-        System.out.println(timeTable.getId());
-        System.out.println(timeTable.getDepartureTime());
-      }
-
-//      TimeTableのdepartureTimeをTextViewとして追加
-      for (TimeTable timeTable : timeTables) {
-        // TextViewを作成
-        TextView textView = new TextView(this);
-        textView.setText(timeTable.getDepartureTime().toString());
-
-        // TextViewのレイアウトパラメータを設定
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        textView.setLayoutParams(params);
-
-        // TextViewのスタイルを設定
-        textView.setTextColor(Color.BLACK);
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
-
-        // TextViewをLinearLayoutに追加
-        layout.addView(textView);
-      }
-
-      //    TimeTableDetailの表示
       TimeTableDetail timeTableDetail = service.getTimeTableDetailFromTimeTable(timeTables.get(0));
-      List<String> strings = new ArrayList<>(List.of(
-          timeTableDetail.getTrainCompanyNickname(),
-          timeTableDetail.getTrainLineName(),
-          timeTableDetail.getDepartureStationName(),
-          timeTableDetail.getArrivalStationName(),
-          timeTableDetail.getTimeTable().getDepartureTime().toString(),
-          timeTableDetail.getTimeTable().getArrivalTime().toString()
-      ));
 
-      for (String string : strings) {
-        System.out.println(string);
-      }
+      new Handler(Looper.getMainLooper()).post(() -> {
+        for (Station station : stations) {
+          TextView textView = new TextView(this);
+          textView.setText(station.getName());
+          LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(
+              LinearLayout.LayoutParams.MATCH_PARENT,
+              LinearLayout.LayoutParams.WRAP_CONTENT
+          );
+          textView.setLayoutParams(params1);
+          textView.setTextColor(Color.BLACK);
+          textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
+          layout.addView(textView);
+        }
 
-      // TextViewを作成
-      for (String string : strings) {
-        TextView textView = new TextView(this);
-        textView.setText(string);
+        List<String> strings = new ArrayList<>(List.of(
+            timeTableDetail.getTrainCompanyNickname(),
+            timeTableDetail.getTrainLineName(),
+            timeTableDetail.getDepartureStationName(),
+            timeTableDetail.getArrivalStationName(),
+            timeTableDetail.getTimeTable().getDepartureTime().toString(),
+            timeTableDetail.getTimeTable().getArrivalTime().toString()
+        ));
 
-        // TextViewのレイアウトパラメータを設定
-        LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        textView.setLayoutParams(params1);
+        for (String string : strings) {
+          System.out.println(string);
+        }
 
-        // TextViewのスタイルを設定
-        textView.setTextColor(Color.BLACK);
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
+        // TextViewを作成
+        for (String string : strings) {
+          TextView textView = new TextView(this);
+          textView.setText(string);
 
-        // TextViewをLinearLayoutに追加
-        layout.addView(textView);
+          // TextViewのレイアウトパラメータを設定
+          LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(
+              LinearLayout.LayoutParams.MATCH_PARENT,
+              LinearLayout.LayoutParams.WRAP_CONTENT
+          );
+          textView.setLayoutParams(params1);
 
-      }
+          // TextViewのスタイルを設定
+          textView.setTextColor(Color.BLACK);
+          textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
+
+          // TextViewをLinearLayoutに追加
+          layout.addView(textView);
+
+        }
+
+      });
+
+      executorService.shutdown();
+
     });
-
-
 
   }
 
