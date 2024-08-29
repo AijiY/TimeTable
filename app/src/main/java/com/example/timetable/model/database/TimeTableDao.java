@@ -10,6 +10,7 @@ import com.example.timetable.model.data.TimeTable;
 import com.example.timetable.model.data.TrainCompany;
 import com.example.timetable.model.data.TrainLine;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Dao
@@ -55,8 +56,8 @@ public interface TimeTableDao {
 
 //  Query(extra)
 //  time_tablesからin_boundとis_weekdayとtrain_line_idを指定して、departureDateTimeの直後のtime_tableを取得
-  @Query("SELECT * FROM time_tables WHERE is_in_bound = :isInBound AND is_weekday = :isWeekday AND train_line_id = :trainLineId AND departure_time > :departureDateTime ORDER BY departure_time LIMIT 1")
-  TimeTable getNextTimeTable(boolean isInBound, boolean isWeekday, int trainLineId, LocalDateTime departureDateTime);
+  @Query("SELECT * FROM time_tables WHERE is_in_bound = :isInBound AND is_weekday = :isWeekday AND train_line_id = :trainLineId AND departure_time > :time ORDER BY departure_time LIMIT 1")
+  TimeTable getNextTimeTable(boolean isInBound, boolean isWeekday, int trainLineId, LocalTime time);
 
 //  time_tablesからin_boundとis_weekdayとtrain_line_idを指定して、始発を取得
   @Query("SELECT * FROM time_tables WHERE is_in_bound = :isInBound AND is_weekday = :isWeekday AND train_line_id = :trainLineId ORDER BY departure_time LIMIT 1")
