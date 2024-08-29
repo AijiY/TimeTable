@@ -1,5 +1,6 @@
 package com.example.timetable.model.domain;
 
+import android.content.Context;
 import com.example.timetable.model.data.TimeTable;
 import com.example.timetable.model.data.TrainLine;
 import com.example.timetable.model.database.TimeTableDao;
@@ -16,9 +17,9 @@ public final class TimeTableDetail {
 
   private Service service;
 
-  public TimeTableDetail(TimeTable timeTable) {
+  public TimeTableDetail(TimeTable timeTable, Context context) {
     this.timeTable = timeTable;
-    service = new Service();
+    service = new Service(context);
 
     TrainLine trainLine = service.getTrainLineById(timeTable.getTrainLineId());
 

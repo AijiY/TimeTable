@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity(tableName = "time_tables")
 public class TimeTable {
@@ -20,15 +21,15 @@ public class TimeTable {
   private boolean isWeekday;
 
   @ColumnInfo(name = "departure_time")
-  private LocalDateTime departureTime;
+  private LocalTime departureTime;
 
   @ColumnInfo(name = "arrival_time")
-  private LocalDateTime arrivalTime;
+  private LocalTime arrivalTime;
 
   @ColumnInfo(name = "train_type")
   private String trainType;
 
-  public TimeTable(int trainLineId, boolean isInBound, boolean isWeekday, LocalDateTime departureTime, LocalDateTime arrivalTime, String trainType) {
+  public TimeTable(int trainLineId, boolean isInBound, boolean isWeekday, LocalTime departureTime, LocalTime arrivalTime, String trainType) {
     this.trainLineId = trainLineId;
     this.isInBound = isInBound;
     this.isWeekday = isWeekday;
@@ -61,19 +62,19 @@ public class TimeTable {
     isInBound = inBound;
   }
 
-  public LocalDateTime getDepartureTime() {
+  public LocalTime getDepartureTime() {
     return departureTime;
   }
 
-  public void setDepartureTime(LocalDateTime departureTime) {
+  public void setDepartureTime(LocalTime departureTime) {
     this.departureTime = departureTime;
   }
 
-  public LocalDateTime getArrivalTime() {
+  public LocalTime getArrivalTime() {
     return arrivalTime;
   }
 
-  public void setArrivalTime(LocalDateTime arrivalTime) {
+  public void setArrivalTime(LocalTime arrivalTime) {
     this.arrivalTime = arrivalTime;
   }
 
