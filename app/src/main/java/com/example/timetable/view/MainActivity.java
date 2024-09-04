@@ -50,24 +50,8 @@ public class MainActivity extends AppCompatActivity {
 
       List<Station> stations = service.getStations();
 
-
-//      new Handler(Looper.getMainLooper()).post(() -> {
-//        for (Station station : stations) {
-//          TextView textView = new TextView(this);
-//          textView.setText(station.getName());
-//          LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(
-//              LinearLayout.LayoutParams.MATCH_PARENT,
-//              LinearLayout.LayoutParams.WRAP_CONTENT
-//          );
-//          textView.setLayoutParams(params1);
-//          textView.setTextColor(Color.BLACK);
-//          textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
-//          layout.addView(textView);
-//        }
-//      });
-
       List<TimeTable> timeTables = service.getTimeTables();
-      TimeTableDetail timeTableDetail = service.getTimeTableDetailFromTimeTable(timeTables.get(0));
+      TimeTableDetail timeTableDetail = service.getTimeTableDetailFromTimeTable(timeTables.get(300));
 
       new Handler(Looper.getMainLooper()).post(() -> {
         for (Station station : stations) {
