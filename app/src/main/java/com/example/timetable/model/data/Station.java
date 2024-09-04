@@ -12,7 +12,7 @@ public class Station {
   @ColumnInfo(name = "name")
   private String name;
 
-  @ColumnInfo(name = "Company_id")
+  @ColumnInfo(name = "company_id")
   private int companyId;
 
   public Station(String name, int companyId) {
