@@ -7,12 +7,173 @@
   android:layout_height="match_parent"
   tools:context=".view.MainActivity">
   <LinearLayout
-    android:id="@+id/test"
+    android:id="@+id/timeTableContainer"
     android:layout_width="409dp"
-    android:layout_height="729dp"
+    android:layout_height="wrap_content"
     android:layout_marginTop="1dp"
     android:layout_marginStart="1dp"
     android:orientation="vertical"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"></LinearLayout>
+    app:layout_constraintTop_toTopOf="parent">
+    <Button
+      android:id="@+id/reverseButton"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/reverseButton" />
+    <com.google.android.material.tabs.TabLayout
+      android:id="@+id/afterTimeTab"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+      <com.google.android.material.tabs.TabItem
+        android:id="@+id/time0Item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/time0" />
+
+      <com.google.android.material.tabs.TabItem
+        android:id="@+id/time5Item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/time5" />
+
+      <com.google.android.material.tabs.TabItem
+        android:id="@+id/time10Item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/time10" />
+      <com.google.android.material.tabs.TabItem
+        android:id="@+id/time30Item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/time30" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <LinearLayout
+      android:id="@+id/firstLineDeparture"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+      <TextView
+        android:id="@+id/firstLineDepartureTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/sampleTime" />
+      <TextView
+        android:id="@+id/firstLineDepartureStation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/sampleStation" />
+    </LinearLayout>
+    <LinearLayout
+      android:id="@+id/firstLine"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="horizontal">
+      <TextView
+        android:id="@+id/firstLineArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/arrow" />
+      <TextView
+        android:id="@+id/firstLineName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/sampleLine" />
+    </LinearLayout>
+    <LinearLayout
+      android:id="@+id/firstLineArrival"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+      <TextView
+        android:id="@+id/firstLineArrivalTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/sampleTime" />
+      <TextView
+        android:id="@+id/firstLineArrivalStation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/sampleStation" />
+    </LinearLayout>
+    <LinearLayout
+      android:id="@+id/walk"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="horizontal">
+      <TextView
+        android:id="@+id/walkArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/arrow" />
+      <TextView
+        android:id="@+id/walkName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/walk" />
+    </LinearLayout>
+    <LinearLayout
+      android:id="@+id/secondLineDeparture"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+      <TextView
+        android:id="@+id/secondLineDepartureTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/sampleTime" />
+      <TextView
+        android:id="@+id/secondLineDepartureStation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/sampleStation" />
+    </LinearLayout>
+    <LinearLayout
+      android:id="@+id/secondLine"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="horizontal">
+      <TextView
+        android:id="@+id/secondLineArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/arrow" />
+      <TextView
+        android:id="@+id/secondLineName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/sampleLine" />
+    </LinearLayout>
+    <LinearLayout
+      android:id="@+id/secondLineArrival"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+      <TextView
+        android:id="@+id/secondLineArrivalTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/sampleTime" />
+      <TextView
+        android:id="@+id/secondLineArrivalStation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/sampleStation" />
+    </LinearLayout>
+  </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

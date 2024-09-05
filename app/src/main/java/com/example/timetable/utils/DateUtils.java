@@ -1,7 +1,5 @@
 package com.example.timetable.utils;
 
-import de.jollyday.HolidayCalendar;
-import de.jollyday.HolidayManager;
 import java.time.LocalDateTime;
 
 public class DateUtils {
@@ -11,11 +9,16 @@ public class DateUtils {
    * @param date
    * @return 土日祝日はfalse、平日はtrue
    */
+//  public static boolean isWeekday(LocalDateTime date) {
+//    HolidayManager holidayManager = HolidayManager.getInstance(HolidayCalendar.JAPAN);
+//    if (holidayManager.isHoliday(date.toLocalDate())) {
+//      return false;
+//    }
+//    return date.getDayOfWeek().getValue() < 6;
+//  }
+
+  // 暫定の祝日を考慮しない平日判定
   public static boolean isWeekday(LocalDateTime date) {
-    HolidayManager holidayManager = HolidayManager.getInstance(HolidayCalendar.JAPAN);
-    if (holidayManager.isHoliday(date.toLocalDate())) {
-      return false;
-    }
     return date.getDayOfWeek().getValue() < 6;
   }
 
