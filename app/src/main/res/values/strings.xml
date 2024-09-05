@@ -1,3 +1,13 @@
 <resources>
   <string name="app_name">TimeTable</string>
+  <string name="reverseButton">⇔逆区間</string>
+  <string name="time0">今すぐ</string>
+  <string name="time5">5分後</string>
+  <string name="time10">10分後</string>
+  <string name="time30">30分後</string>
+  <string name="sampleTime">12:00発</string>
+  <string name="sampleStation">東京駅</string>
+  <string name="sampleLine">山手線</string>
+  <string name="walk">徒歩</string>
+  <string name="arrow">↓</string>
 </resources>
