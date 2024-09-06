@@ -61,7 +61,47 @@ public class MainActivity extends AppCompatActivity {
     assignToConstants();
 
     // 初期の表示
-    showTimeTable(isOutward);
+    showingTime = presentTime;
+    showTimeTable(isOutward, showingTime);
+
+    // 逆ボタンの処理
+    reverseButton.setOnClickListener(v -> {
+      isOutward = !isOutward;
+      showTimeTable(isOutward, showingTime);
+    });
+
+    // タブの処理
+    afterTimeTab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+      @Override
+      public void onTabSelected(TabLayout.Tab tab) {
+        int position = tab.getPosition();
+        switch (position) {
+          case 0:
+            showingTime = presentTime;
+            break;
+          case 1:
+            showingTime = presentTime.plusMinutes(5);
+            break;
+          case 2:
+            showingTime = presentTime.plusMinutes(10);
+            break;
+          case 3:
+            showingTime = presentTime.plusMinutes(35);
+            break;
+          default:
+            showingTime = presentTime;
+        }
+        showTimeTable(isOutward, showingTime);
+      }
+
+      @Override
+      public void onTabUnselected(TabLayout.Tab tab) {
+      }
+
+      @Override
+      public void onTabReselected(TabLayout.Tab tab) {
+      }
+    });
 
 ////    以下dbテスト
 //    ExecutorService executorService = Executors.newSingleThreadExecutor();
@@ -152,18 +192,21 @@ public class MainActivity extends AppCompatActivity {
     mainHandler = new Handler(getMainLooper());
   }
 
-  private void showTimeTable(final boolean isOutward) {
-    showingTime = presentTime;
+  private void showTimeTable(final boolean isOutward, LocalDateTime showingTime) {
 
     // isOutwardに応じた定数の設定
+    int firstLineId = isOutward ? 1 : 2;
+    boolean firstLineIsInBound = true;
+    int secondLineId = isOutward ? 2 : 1;
+    boolean secondLineIsInBound = false;
 
     executorService.execute(() -> {
       // データベース操作の実行
-      final TimeTableDetail firstLineTimeTableDetail = service.getNextTimeTableDetail(showingTime, true, 1);
+      final TimeTableDetail firstLineTimeTableDetail = service.getNextTimeTableDetail(showingTime, firstLineIsInBound, firstLineId);
 
       LocalTime secondLineDepartureLocalTime = firstLineTimeTableDetail.getTimeTable().getArrivalTime().plusMinutes(TRANSFER_MINUTES);
       LocalDateTime secondLineDepartureLocalDateTime = LocalDateTime.of(showingTime.toLocalDate(), secondLineDepartureLocalTime);
-      final TimeTableDetail secondLineTimeTableDetail = service.getNextTimeTableDetail(secondLineDepartureLocalDateTime, false, 2);
+      final TimeTableDetail secondLineTimeTableDetail = service.getNextTimeTableDetail(secondLineDepartureLocalDateTime, secondLineIsInBound, secondLineId);
 
       // UI の更新をメインスレッドで実行
       mainHandler.post(() -> {
