@@ -26,7 +26,5 @@
     </activity>
   </application>
 
-  <!-- インターネットアクセス権限を追加 -->
-  <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
