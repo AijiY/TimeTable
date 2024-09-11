@@ -45,7 +45,4 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
-    // 祝日用
-    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
-
 }

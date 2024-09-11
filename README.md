@@ -1,10 +1,12 @@
 # TimeTable
 
 ## 概要
-このアプリは、
+このアプリは、特定区間の電車の乗換案内を表示するアプリです。
 
 ## スクリーンショット
-![スクリーンショット](path/to/screenshot.png)
+準備中
+
+[//]: # (![スクリーンショット]&#40;path/to/screenshot.png&#41;)
 
 ## 機能
 - 乗換案内の表示（特定区間・現在時刻付近のみ）
@@ -29,7 +31,7 @@
 - **UI:** Jetpack Compose / XMLレイアウト
 - **データベース:** Room Database
 - **依存関係管理:** Gradle
-- **ライブラリ:** Material Components, OkHttp, etc.
+- **ライブラリ:** Material Components etc.
 
 ## 作者
 - 名前: Aiji
