@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             showingTime = presentTime.plusMinutes(10);
             break;
           case 3:
-            showingTime = presentTime.plusMinutes(35);
+            showingTime = presentTime.plusMinutes(30);
             break;
           default:
             showingTime = presentTime;
@@ -211,15 +211,15 @@ public class MainActivity extends AppCompatActivity {
       // UI の更新をメインスレッドで実行
       mainHandler.post(() -> {
         firstLineDepartureTime.setText(firstLineTimeTableDetail.getTimeTable().getDepartureTime().toString());
-        firstLineDepartureStation.setText(firstLineTimeTableDetail.getDepartureStationName());
-        firstLineName.setText(firstLineTimeTableDetail.getTrainCompanyNickname() + " " + firstLineTimeTableDetail.getTrainLineName());
+        firstLineDepartureStation.setText(firstLineTimeTableDetail.getDepartureStationName() + "駅");
+        firstLineName.setText(firstLineTimeTableDetail.getTrainCompanyNickname() + " " + firstLineTimeTableDetail.getTrainLineName() + "（" + firstLineTimeTableDetail.getTimeTable().getTrainType() + "）");
         firstLineArrivalTime.setText(firstLineTimeTableDetail.getTimeTable().getArrivalTime().toString());
-        firstLineArrivalStation.setText(firstLineTimeTableDetail.getArrivalStationName());
+        firstLineArrivalStation.setText(firstLineTimeTableDetail.getArrivalStationName() + "駅");
         secondLineDepartureTime.setText(secondLineTimeTableDetail.getTimeTable().getDepartureTime().toString());
-        secondLineDepartureStation.setText(secondLineTimeTableDetail.getDepartureStationName());
-        secondLineName.setText(secondLineTimeTableDetail.getTrainCompanyNickname() + " " + secondLineTimeTableDetail.getTrainLineName());
+        secondLineDepartureStation.setText(secondLineTimeTableDetail.getDepartureStationName() + "駅");
+        secondLineName.setText(secondLineTimeTableDetail.getTrainCompanyNickname() + " " + secondLineTimeTableDetail.getTrainLineName() + "（" + secondLineTimeTableDetail.getTimeTable().getTrainType() + "）");
         secondLineArrivalTime.setText(secondLineTimeTableDetail.getTimeTable().getArrivalTime().toString());
-        secondLineArrivalStation.setText(secondLineTimeTableDetail.getArrivalStationName());
+        secondLineArrivalStation.setText(secondLineTimeTableDetail.getArrivalStationName() + "駅");
       });
     });
   }
