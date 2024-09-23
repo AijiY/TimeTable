@@ -10,6 +10,7 @@ public final class TimeTableDetail {
   private TimeTable timeTable;
   private String trainCompanyNickname;
   private String trainLineName;
+  private String trainLineColor;
   private int departureStationId;
   private int arrivalStationId;
   private String departureStationName;
@@ -25,6 +26,7 @@ public final class TimeTableDetail {
 
     trainCompanyNickname = service.getTrainCompanyById(trainLine.getCompanyId()).getNickname();
     trainLineName = trainLine.getName();
+    trainLineColor = trainLine.getLineColor();
 
     departureStationId = service.getDepartureStationId(timeTable.isInBound(), timeTable.getTrainLineId());
     arrivalStationId = service.getArrivalStationId(timeTable.isInBound(), timeTable.getTrainLineId());
@@ -44,6 +46,10 @@ public final class TimeTableDetail {
 
   public String getTrainLineName() {
     return trainLineName;
+  }
+
+  public String getTrainLineColor() {
+    return trainLineColor;
   }
 
   public String getDepartureStationName() {
