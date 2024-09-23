@@ -1,8 +1,10 @@
 package com.example.timetable.view;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import android.os.Handler;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
   private TextView secondLineName;
   private TextView secondLineArrivalTime;
   private TextView secondLineArrivalStation;
+  private View firstLineRailway;
+  private View secondLineRailway;
 
   // DB操作用
   private ExecutorService executorService;
@@ -187,6 +191,8 @@ public class MainActivity extends AppCompatActivity {
     secondLineName = findViewById(R.id.secondLineName);
     secondLineArrivalTime = findViewById(R.id.secondLineArrivalTime);
     secondLineArrivalStation = findViewById(R.id.secondLineArrivalStation);
+    firstLineRailway = findViewById(R.id.firstLineRailway);
+    secondLineRailway = findViewById(R.id.secondLineRailway);
 
     executorService = Executors.newSingleThreadExecutor();
     mainHandler = new Handler(getMainLooper());
@@ -210,15 +216,17 @@ public class MainActivity extends AppCompatActivity {
 
       // UI の更新をメインスレッドで実行
       mainHandler.post(() -> {
-        firstLineDepartureTime.setText(firstLineTimeTableDetail.getTimeTable().getDepartureTime().toString());
+        firstLineDepartureTime.setText(firstLineTimeTableDetail.getTimeTable().getDepartureTime().toString() + " 発");
         firstLineDepartureStation.setText(firstLineTimeTableDetail.getDepartureStationName() + "駅");
+        firstLineRailway.setBackgroundColor(Color.parseColor(firstLineTimeTableDetail.getTrainLineColor()));
         firstLineName.setText(firstLineTimeTableDetail.getTrainCompanyNickname() + " " + firstLineTimeTableDetail.getTrainLineName() + "（" + firstLineTimeTableDetail.getTimeTable().getTrainType() + "）");
-        firstLineArrivalTime.setText(firstLineTimeTableDetail.getTimeTable().getArrivalTime().toString());
+        firstLineArrivalTime.setText(firstLineTimeTableDetail.getTimeTable().getArrivalTime().toString() + " 着");
         firstLineArrivalStation.setText(firstLineTimeTableDetail.getArrivalStationName() + "駅");
-        secondLineDepartureTime.setText(secondLineTimeTableDetail.getTimeTable().getDepartureTime().toString());
+        secondLineDepartureTime.setText(secondLineTimeTableDetail.getTimeTable().getDepartureTime().toString() + " 発");
         secondLineDepartureStation.setText(secondLineTimeTableDetail.getDepartureStationName() + "駅");
+        secondLineRailway.setBackgroundColor(Color.parseColor(secondLineTimeTableDetail.getTrainLineColor()));
         secondLineName.setText(secondLineTimeTableDetail.getTrainCompanyNickname() + " " + secondLineTimeTableDetail.getTrainLineName() + "（" + secondLineTimeTableDetail.getTimeTable().getTrainType() + "）");
-        secondLineArrivalTime.setText(secondLineTimeTableDetail.getTimeTable().getArrivalTime().toString());
+        secondLineArrivalTime.setText(secondLineTimeTableDetail.getTimeTable().getArrivalTime().toString() + " 着");
         secondLineArrivalStation.setText(secondLineTimeTableDetail.getArrivalStationName() + "駅");
       });
     });

@@ -21,6 +21,9 @@ public class TrainLine {
   @ColumnInfo(name = "out_bound_terminal_station_id")
   private int outBoundTerminalStationId;
 
+  @ColumnInfo(name = "line_color")
+  private String lineColor;
+
   public TrainLine(String name, int companyId, int inBoundTerminalStationId, int outBoundTerminalStationId) {
     this.name = name;
     this.companyId = companyId;
@@ -66,5 +69,13 @@ public class TrainLine {
 
   public void setOutBoundTerminalStationId(int outBoundTerminalStationId) {
     this.outBoundTerminalStationId = outBoundTerminalStationId;
+  }
+
+  public String getLineColor() {
+    return lineColor;
+  }
+
+  public void setLineColor(String lineColor) {
+    this.lineColor = lineColor;
   }
 }
