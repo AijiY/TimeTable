@@ -201,9 +201,9 @@ public class MainActivity extends AppCompatActivity {
   private void showTimeTable(final boolean isOutward, LocalDateTime showingTime) {
 
     // isOutwardに応じた定数の設定
-    int firstLineId = isOutward ? 1 : 2;
+    int firstLineId = isOutward ? 3 : 4;
     boolean firstLineIsInBound = true;
-    int secondLineId = isOutward ? 2 : 1;
+    int secondLineId = isOutward ? 4 : 3;
     boolean secondLineIsInBound = false;
 
     executorService.execute(() -> {
