@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
   private LocalDateTime presentTime = LocalDateTime.now();
   private LocalDateTime showingTime;
   private boolean isOutward = true;
-  private int TRANSFER_MINUTES = 5;
+  private int TRANSFER_MINUTES = 10;
 
   // 各種Widgetの定義
   private Button reverseButton;
