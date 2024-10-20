@@ -218,13 +218,23 @@ public class MainActivity extends AppCompatActivity {
       mainHandler.post(() -> {
         firstLineDepartureTime.setText(firstLineTimeTableDetail.getTimeTable().getDepartureTime().toString() + " 発");
         firstLineDepartureStation.setText(firstLineTimeTableDetail.getDepartureStationName() + "駅");
-        firstLineRailway.setBackgroundColor(Color.parseColor(firstLineTimeTableDetail.getTrainLineColor()));
+        // 色が設定されていない場合は赤色に設定
+        if (firstLineTimeTableDetail.getTrainLineColor() == null) {
+          firstLineRailway.setBackgroundColor(Color.parseColor("#FF0000"));
+        } else {
+          firstLineRailway.setBackgroundColor(Color.parseColor(firstLineTimeTableDetail.getTrainLineColor()));
+        }
         firstLineName.setText(firstLineTimeTableDetail.getTrainCompanyNickname() + " " + firstLineTimeTableDetail.getTrainLineName() + "（" + firstLineTimeTableDetail.getTimeTable().getTrainType() + "）");
         firstLineArrivalTime.setText(firstLineTimeTableDetail.getTimeTable().getArrivalTime().toString() + " 着");
         firstLineArrivalStation.setText(firstLineTimeTableDetail.getArrivalStationName() + "駅");
         secondLineDepartureTime.setText(secondLineTimeTableDetail.getTimeTable().getDepartureTime().toString() + " 発");
         secondLineDepartureStation.setText(secondLineTimeTableDetail.getDepartureStationName() + "駅");
-        secondLineRailway.setBackgroundColor(Color.parseColor(secondLineTimeTableDetail.getTrainLineColor()));
+        // 色が設定されていない場合は青色に設定
+        if (secondLineTimeTableDetail.getTrainLineColor() == null) {
+          secondLineRailway.setBackgroundColor(Color.parseColor("#0000FF"));
+        } else {
+          secondLineRailway.setBackgroundColor(Color.parseColor(secondLineTimeTableDetail.getTrainLineColor()));
+        }
         secondLineName.setText(secondLineTimeTableDetail.getTrainCompanyNickname() + " " + secondLineTimeTableDetail.getTrainLineName() + "（" + secondLineTimeTableDetail.getTimeTable().getTrainType() + "）");
         secondLineArrivalTime.setText(secondLineTimeTableDetail.getTimeTable().getArrivalTime().toString() + " 着");
         secondLineArrivalStation.setText(secondLineTimeTableDetail.getArrivalStationName() + "駅");
