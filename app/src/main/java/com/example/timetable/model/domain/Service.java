@@ -63,11 +63,11 @@ public class Service {
   }
 
   public TimeTableDetail getNextTimeTableDetail(LocalDateTime dateTime, boolean isInBound, int trainLineId) {
-    boolean isTodayWeekday = DateUtils.isWeekday(dateTime);
+    boolean isTodayWeekday = DateUtils.isWeekday(dateTime, context);
     TimeTable nextTimeTable = getNextTimeTable(isInBound, isTodayWeekday, trainLineId, dateTime.toLocalTime());
     if (nextTimeTable == null) {
 //      次の日が休日がどうか判断
-      boolean isNextDayWeekday = DateUtils.isWeekday(dateTime.plusDays(1));
+      boolean isNextDayWeekday = DateUtils.isWeekday(dateTime.plusDays(1), context);
       nextTimeTable = getFirstTrainTimeTable(isInBound, isNextDayWeekday, trainLineId);
     }
     return new TimeTableDetail(nextTimeTable, context);
