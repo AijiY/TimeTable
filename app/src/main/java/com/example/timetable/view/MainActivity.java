@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
   private LocalDateTime presentTime = LocalDateTime.now();
   private LocalDateTime showingTime;
   private boolean isOutward = true;
-  private int TRANSFER_MINUTES = 10;
+  private int TRANSFER_MINUTES = 5;
 
   // 各種Widgetの定義
   private Button reverseButton;
@@ -201,9 +201,9 @@ public class MainActivity extends AppCompatActivity {
   private void showTimeTable(final boolean isOutward, LocalDateTime showingTime) {
 
     // isOutwardに応じた定数の設定
-    int firstLineId = isOutward ? 3 : 4;
+    int firstLineId = isOutward ? 1 : 2;
     boolean firstLineIsInBound = true;
-    int secondLineId = isOutward ? 4 : 3;
+    int secondLineId = isOutward ? 2 : 1;
     boolean secondLineIsInBound = false;
 
     executorService.execute(() -> {

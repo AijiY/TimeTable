@@ -4,7 +4,7 @@
 このアプリは、特定の2路線間の電車の乗換案内を表示するアプリです。
 
 ## 使用動画
-![demo](https://github.com/user-attachments/assets/90fb829d-113b-4ef8-ad8d-eced3d8f6401)
+![demo ‐ Clipchampで作成](https://github.com/user-attachments/assets/9d9154b5-1d4c-4830-8c6e-17dfb499bcde)
 
 ## 機能
 - 乗換案内の表示（現在時刻および5分後、10分後、30分後）
