@@ -1,39 +1,26 @@
-# TimeTable
+# 乗換案内アプリ
 
-## 概要
-このアプリは、特定の2路線間の電車の乗換案内を表示するアプリです。
+## 作成背景（Background）
+　自分がよく使用する特定の路線の時刻表を確認するために、乗換案内アプリを作成しました。
 
-## 使用動画
+## 開発環境（Development Environment）
+### 技術（Technologies）
+![badge](https://img.shields.io/badge/Java-21.0.4-ED8B00?logo=openjdk&logoColor=white)
+
+### ツール（Tools）
+![badge](https://img.shields.io/badge/Android%20Studio-2024.1.1-3DDC84?logo=androidstudio&logoColor=white)
+![badge](https://img.shields.io/badge/Room-2.6.1-3DDC84?logo=room&logoColor=white)
+![badge](https://img.shields.io/badge/DB%20Browser%20for%20SQLite-3.13.0-A0A0A0?logoColor=white)
+![badge](https://img.shields.io/badge/Gradle-8.9-02303A?logo=gradle&logoColor=white)
+![badge](https://img.shields.io/badge/GitHub-%23181717?logo=github&logoColor=white)
+
+## 機能（Function）
+- 特定の路線の乗換案内の表示（現在時刻および5分後、10分後、30分後）<br>
 ![demo ‐ Clipchampで作成](https://github.com/user-attachments/assets/9d9154b5-1d4c-4830-8c6e-17dfb499bcde)
 
-## 機能
-- 乗換案内の表示（現在時刻および5分後、10分後、30分後）
-- 時刻表データのCRUD操作（未実装・機能追加予定） 
+## 工夫した点 (Points to Note)
+　一般的な乗換案内アプリに対して、機能を減らしたうえで必要な情報を取得するまでの時間を短縮しました。
 
-## 環境
-- **Android Studio:** 4.x以降
-- **最小APIレベル:** 31
-- **言語:** Java
-
-## インストール方法
-1. Android Studioをインストール
-    - [Android Studioダウンロードページ](https://developer.android.com/studio)
-2. このリポジトリをクローンします:
-    ```bash
-    git clone https://github.com/AijiY/TimeTable.git
-    ```
-3. データベースファイルをDB Browser for SQLite等で作成し、以下の場所に保存します。
-   フォルダパス：TimeTable\app\src\main\assets\databases
-    ファイル名：time_table.db
-4. Android Studioでプロジェクトを開きます。
-5. エミュレータまたは接続したデバイスでアプリをビルドして実行します。
-
-## 使用技術
-- **UI:** Jetpack Compose / XMLレイアウト
-- **データベース:** Room Database
-- **依存関係管理:** Gradle
-- **ライブラリ:** Material Components etc.
-
-## 作者
-- 名前: Aiji
-- GitHub: [AijiY](https://github.com/AijiY)
+## 今後の課題（Future Improvements）
+- **テストコード実装** ：データ取得が正常に行われるかを確認するためのテストコードの実装
+- **外部APIの使用** ：時刻表データや祝日情報の取得に外部APIを使用する
